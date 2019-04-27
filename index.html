@@ -1,0 +1,180 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>かわいいログイン画面をつくる</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/sky.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown data-separator="^---$" data-separator-vertical="^--$">
+					<textarea data-template>
+						## かわいいログイン画面のつくり方
+						<br/>
+						## tsutsu
+						---
+						## 作ったかわいいログイン画面
+						![image](images/image01.gif)
+						---
+						## 世間のかわいいに対する認識
+						![image](images/image02.png)
+						--
+						## ラップトップのかわいい
+						![image](images/image03.jpg)
+						--
+						## キーボードのかわいい
+						![image](images/image04.jpg)
+						--
+						## 乃木坂46のかわいい
+						![image](images/image05.jpg)
+						---
+						## ということで．．．
+						--
+						## ログイン画面もかわいいが必要です💗
+						---
+						## かわいい開発環境
+						<br/>
+						* Vue.js
+						* Element UI
+						* Lottie
+						--
+						## Vue.js
+						<br/>
+						Webアプリケーションにおけるユーザーインターフェイスを構築するためのJavaScriptフレームワークです．
+						SFC（Single File Component）で開発が可能で，SPAの開発を行うことができます．
+
+						[https://jp.vuejs.org/index.html](https://jp.vuejs.org/index.html)
+						--
+						## Element UI
+						<br/>
+						Vue.jsのコンポーネントライブラリで，Vuetifyに比べてデフォルトであたっているCSSが少なく，デザインする上でも使い勝手がいいです．
+
+						[https://element.eleme.io](https://element.eleme.io)
+						--
+						## Lottie
+						<br/>
+						Web，iOS，Android，React Nativeなどのアニメーションライブラリです．軽量でスムーズなアニメーションを実装することができます．
+
+						[https://airbnb.design/lottie/](https://airbnb.design/lottie/)
+						---
+						## 開発ステップ 1
+						<br/>
+						Vue.js（Vue CLI）をインストール・アプリ作成
+						```console
+						$ npm install -g @vue/cli
+						$ vue create kawaii-login
+						$ cd kawaii-login
+						$ npm run serve
+						```
+						--
+						## 開発ステップ 2
+						<br/>
+						Element UIをインストール・セットアップ
+						```console
+						$ vue add element
+						$ npm run serve
+						```
+						* How do you want to import Element? (Fully import)
+						* Do you wish to overwrite Element's SCSS variables? (Yes)
+						* Choose the locale you want to load (ja)
+						--
+						## 開発ステップ 3-1
+						<br/>
+						Lottieをインストール
+						```console
+						$ npm install --save vue-lottie
+						```
+						Lottie用のコンポーネントを用意（コピペでOK）
+
+						[https://github.com/chenqingspring/vue-lottie/blob/master/src/lottie.vue](https://github.com/chenqingspring/vue-lottie/blob/master/src/lottie.vue)
+
+						Lottieのアニメーションを作成（or ダウンロード） JSON形式
+
+						[https://lottiefiles.com/popular](https://lottiefiles.com/popular)
+						--
+						## 開発ステップ 3-2
+						<br/>
+						前述のLottie.vueをimportして使います
+						```html
+						<template>
+						  <lottie :options="defaultOption" :height="300" :width="300" :animCreated="handleAnimation"/>
+						  <el-card class="login-card">
+							:
+						  </el-card>
+						</template>
+						
+						<script>
+						import Lottie from '@/components/Lottie.vue'
+						import * as animation from '@/assets/animation.json'
+						export default {
+						  components: {
+						    defaultOption () { return { animationData: animation } }
+						  },
+						  methods: {
+						    handleAnimation (anim) { this.anim = anim }
+						  }
+						}
+						</script>
+						```
+						--
+						## ソースコードはこちらです
+						<br/>
+						その他の詳細はGitHubのコードを確認してください
+
+						[https://github.com/y-tsutsu/kawaii-login](https://github.com/y-tsutsu/kawaii-login)
+						---
+						## Firebaseにデプロイしました
+						<br/>
+						デプロイ方法は[こちら](https://qiita.com/y-tsutsu/items/e8544ec5fe1b9a69ea35#firebaseとの連携)を参考にしてください
+
+						[https://kawaii-login-c7863.firebaseapp.com](https://kawaii-login-c7863.firebaseapp.com)
+						--
+						## 参考Blog
+						<br/>
+						作ったものは大体ここから拝借しました
+
+						[https://tech.smartcamp.co.jp/entry/2019/04/18/184533](https://tech.smartcamp.co.jp/entry/2019/04/18/184533)
+						---
+						## Thank U for Reading
+					</textarea>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				history: true,
+				transition: 'convex', // none/fade/slide/convex/concave/zoom
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
